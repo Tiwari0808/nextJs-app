@@ -1,14 +1,23 @@
 import Link from "next/link"
 
-const page = () => {
+export const revalidate = 60;
+const getProducts = async () => {
+    const res = await fetch('https://dummyjson.com/products', {
+        next: { revalidate: 60 }
+    });
+    const data = await res.json();
+    return data.products;
+}
+
+const page = async() => {
+    const products = await getProducts();
     return (
         <div>
-            {[...Array(10)].map((_, i) =>
-                <div key={i}>
-                    <Link href={`/products/${i + 1}`}>Product {i + 1}</Link>
+            {products.map((product) =>
+                <div key={product.id}>
+                    <Link href={`/products/${product.id}`}>{product.id}. {product.title}</Link>
                 </div>
             )}
-
         </div>
     )
 }
