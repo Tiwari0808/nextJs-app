@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="bg-amber-600  p-4 text-black flex justify-around">next tutorial
+        <header className="bg-amber-600  p-4 text-black flex justify-around"><Image src={'/marvelLogo.svg'} width={100} height={100}></Image>
           <Link href={'/'}>Home</Link>
           <Link href={'/products'}>Products</Link>
         </header>
